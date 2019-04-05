@@ -31,7 +31,12 @@ def get_bulk_statistics(properties):
     stats = {}
     stats["avg_asking_price"] = get_average_asking_price(properties)
     stats["avg_price_per_sqft"] = get_average_price_per_sqft(properties)
+    stats["avg_lot_size"] = get_average_lot_size(properties)
     return stats
+
+def get_average_lot_size(properties):
+    lot_sizes = [p.lotSize for p in properties]
+    return sum(lot_sizes) // len(lot_sizes)
 
 def get_average_price_per_sqft(properties):
     prices_per_sqft = [p.price_per_sqft() for p in properties]
