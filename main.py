@@ -31,8 +31,14 @@ def get_bulk_statistics(properties):
     stats = {}
     stats["avg_asking_price"] = get_average_asking_price(properties)
     stats["avg_price_per_sqft"] = get_average_price_per_sqft(properties)
+    stats["avg_price_per_bedroom"] = get_average_price_per_bedroom(properties)
     stats["avg_lot_size"] = get_average_lot_size(properties)
     return stats
+
+def get_average_price_per_bedroom(properties):
+    # any reason to use map here instead of list comprehension?
+    prices_per_bedroom = list(map(lambda p: p.price_per_bedroom(), properties))
+    return sum(prices_per_bedroom) // len(prices_per_bedroom)
 
 def get_average_lot_size(properties):
     lot_sizes = [p.lotSize for p in properties]
