@@ -4,6 +4,8 @@ from propgen import Propgen
 def main():
     pg = Propgen()
     pg.generate_properties(10)
+
+    # walk through properties
     for prop in get_positives(pg.properties):
         print("="*50)
         print(f"{prop.__str__()}\n")
